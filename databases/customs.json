@@ -1,0 +1,29 @@
+{
+    "colors": {
+        "blurple": "#7289DA",
+        "crimson": "#BF3939",
+        "mahogany": "#E4C390"
+    },
+
+    "medias": {
+        "rotate": "https://i.imgur.com/o1jRjHA.gif"
+    },
+
+    "filters" : {
+        "0.5x" : "rubberband=tempo=0.5",
+        "1.25x" : "rubberband=tempo=1.25",
+        "1.5x" : "rubberband=tempo=1.5",
+        "8d" : "apulsator=hz=0.075",
+
+        "deepfry" : "acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1",
+        "deepen" : "rubberband=pitch=0.75",
+        "expand" : "superequalizer=1b=10:2b=10:3b=1:4b=5:5b=7:6b=5:7b=2:8b=3:9b=4:10b=5:11b=6:12b=7:13b=8:14b=8:15b=9:16b=9:17b=10:18b=10[a];[a]loudnorm=I=-16:TP=-1.5:LRA=14",
+        "lighten" : "rubberband=pitch=1.25",
+
+        "muffled" : "[0]apad=pad_len=44100*2[2];[2][1]afir=length=1:irfmt=mono:dry=10:wet=10[3];[3]atrim=start_sample=44100*2",
+        "phaser" : "aphaser=type=t:speed=2:decay=0.6",
+        "vocoded" : "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75",
+        "whistle" : "afftfilt=real='hypot(re,im)*cos((random(0)*2-1)*2*3.14)':imag='hypot(re,im)*sin((random(1)*2-1)*2*3.14)':win_size=128:overlap=0.8",
+        "woozy" : "vibrato=f=4"
+    }
+}

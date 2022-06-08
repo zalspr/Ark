@@ -22,7 +22,7 @@
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name:  __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['t', 'say', 'speak'],
 
         usage: "Returns any message, given an input. Add `/m` to embed.",

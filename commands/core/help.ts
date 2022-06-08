@@ -58,7 +58,7 @@
             message.reply({ allowedMentions: { repliedUser: false }, embeds: [hpex_embed] });
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['h', 'commands', 'cmd'],
 
         usage: "Lists all the commands supported by the bot.",

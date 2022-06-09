@@ -29,7 +29,7 @@
             for (const data of page) {
 
                 let track_id = ('0' + (++j).toString()).slice(-2);
-                let track_name = (data.name!.length) > 50 ? `${data.name!.substring(0, 49)}...`: data.name;
+                let track_name = data.name.substring(49);
 
                 track_name = FixBracket(track_name!);
                 let temp_tracklist = `\`[${track_id}] ${data.formattedDuration}\`  [${track_name}](${data.url})\n`;
@@ -51,7 +51,7 @@
             if (tracklist.length > 1024) tracklist = tracklist.substring(0, 1024);
 
             let current_id = ('0' + (tracks.indexOf(current) + 1).toString()).slice(-2);
-            let current_name = (current.name!.length) > 50 ? `${current.name!.substring(0, 49)}...` : current.name;
+            let current_name = current.name.substring(49);
 
             current_name = FixBracket(current_name!);
             let currents = `\`[${current_id}] ${current.formattedDuration}\`  [${current_name}](${current.url})`;
@@ -125,11 +125,11 @@
                 });
                 
             } catch(err) {
-                console.log(`  ❱❱ There was an error at ${__filename.split(/[\\/]/).pop()!}\n`, err);
+                console.log(`  ❱❱ There was an error at ${__filename.substring(__dirname.length + 1)}\n`, err);
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['q', 'tracklist', 'tl'],
 
         usage: "Displays the current queue of tracks.",

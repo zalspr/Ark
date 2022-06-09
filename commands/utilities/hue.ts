@@ -2,26 +2,27 @@
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
 
-    function rgbToHex(red: number, green: number, blue: number) {
-        return '#' + (0x1000000 + (red << 16) | (green << 8) | (blue << 0)).toString(16).slice(1);
+    function rgbToHex(r : number, g : number, b : number) : number {
+        return (r & 0xff) << 16 | (g & 0xff) << 8 | (b & 0xff);
     }
       
-    function hexToRgb(hex: string) : any {
-        return [Number('0x' + hex[1] + hex[2]) | 0, Number('0x' + hex[3] + hex[4]) | 0, Number('0x' + hex[5] + hex[6]) | 0];
+    function hexToRgb(hex : number) : any {
+        return [(hex >> 16) & 0xff, (hex >> 8) & 0xff, hex & 0xff];
     }
-
+    
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
 
             if (!args[0]) return message.channel.send('Please provide a color value.');
 
-            let rgb: number[] = [], hex: string = '';
+            let rgb: number[] = [];
+            let hex: number = 0;
             let input = args[0].replace('#', '');
             let exp = /^([0-9a-f]{3}){1,2}$/i;
 
             if (exp.test(input) && !args[1]) {
 
-                hex = '#' + (input.length === 3 ? input.replace(/./g, '$&$&') : input);
+                hex = parseInt(input, 16);
                 rgb = hexToRgb(hex);
                 
             } else if (args.length === 3) {
@@ -30,8 +31,8 @@
                     return message.channel.send('> Please enter a valid color value.')
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
-                rgb = args.map(num => num.replace(',', ''));
-                hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
+                rgb = args.map(num => parseInt(num.replace(',', '')));
+                hex = rgbToHex(...rgb);
 
             } else {
 
@@ -47,7 +48,7 @@
             const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'hue.png');
             const color_embed = new Discord.MessageEmbed()
                 .setAuthor({ name: `Arkus.png Color Translation` })
-                .setDescription(`\`\`\`css\nhex: [${hex}]\nrgb: [${rgb[0]}, ${rgb[1]}, ${rgb[2]}]\`\`\``)
+                .setDescription(`\`\`\`css\nhex: [${hex}]\nrgb: [${rgb}]\`\`\``)
                 .setFooter({ text: `Requested by ${message.author.username}`, iconURL: message.author.avatarURL()! })
                 .setThumbnail('attachment://hue.png')
                 .setTimestamp()
@@ -55,7 +56,7 @@
             message.reply({ allowedMentions: { repliedUser: false }, embeds: [color_embed], files: [attachment] });
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['x', 'color', 'col', 'hex'],
 
         usage: "Returns the color of a given hex value.",

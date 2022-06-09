@@ -34,7 +34,7 @@
                         queue.songs[1] || queue.autoplay ? queue.skip() : queue.seek(current_track_in.duration);
     
                         const main = new Discord.MessageEmbed()
-                            .setDescription(`✦ Skipped ${(current_track_in.name!.length > 60) ? `${current_track_in.name!.substring(0, 60-1)}...` : current_track_in.name}.`)
+                            .setDescription(`✦ Skipped ${current_track_in.name.substring(0,59)}.`)
                             .setFooter({ text: `Arkus.wav  •  Skipped by ${message.author.username}   ` })
                             .setColor(colors.blurple as ColorResolvable)
                             .setTimestamp();

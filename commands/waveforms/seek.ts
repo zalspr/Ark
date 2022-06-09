@@ -38,19 +38,13 @@
 
     function ToSeconds(arr: number[]): number {
 
-        if (arr[0] == -1) 
-            return -1;
-        if (arr.length > 4)
-            return -1;
+        if (arr[0] == -1 || arr.length > 4) return -1;
 
         arr.reverse();
-        let seconds = 0;
-        for (let i = 0; i < arr.length; i++) {
-            if (i == 0) seconds += arr[i];
-            if (i == 1) seconds += arr[i] * 60;
-            if (i == 2) seconds += arr[i] * 60 * 60;
-            if (i == 3) seconds += arr[i] * 60 * 60 * 24;
-        }
+        let seconds = arr[0];
+        seconds += arr[1] * 60;
+        seconds += arr[2] * 60 * 60;
+        seconds += arr[3] * 60 * 60 * 24;
 
         return seconds;
     }
@@ -170,11 +164,11 @@
                 }
             
             } catch(err) {
-                console.log(`  ❱❱ There was an error at ${__filename.split(/[\\/]/).pop()!}\n`, err);
+                console.log(`  ❱❱ There was an error at ${__filename.substring(__dirname.length + 1)}\n`, err);
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['forward'],
 
         usage: "Seeks forward in seconds.",

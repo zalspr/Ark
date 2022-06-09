@@ -30,11 +30,11 @@
                 }
             
             } catch(err) {
-                console.log(`  ❱❱ There was an error at ${__filename.split(/[\\/]/).pop()!}\n`, err);
+                console.log(`  ❱❱ There was an error at ${__filename.substring(__dirname.length + 1)}\n`, err);
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['shuff', 'shf'],
 
         usage: "Shuffles the queue.",

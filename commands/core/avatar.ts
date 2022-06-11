@@ -16,7 +16,7 @@
             message.reply({ allowedMentions: { repliedUser: false }, embeds: [av_embed] });
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name:  __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['av', 'pfp', 'dp'],
 
         usage: "Returns the avatar of a user mentioned, or your own.",

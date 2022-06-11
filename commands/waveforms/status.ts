@@ -36,9 +36,14 @@
 
                 let status_c = `\`🔄\` **Looping:** \`${repeat_mode}\` \n\n`;
                 status_c += `\`📼\` **Filter:** \`${queue.filters.length > 0 ? queue.filters.join(', ') : `off`}\`\n\n`;
-
-                let now_playing = current_track ? `[${(current_track.name!.length > 40) ? `${current_track.name!.substring(0, 40 - 1)}...` : current_track.name}](${current_track.url})` : `Nothing`;
-
+                
+                let now_playing = 'Nothing';
+                
+                if (current_track) {
+                    var name = current_track.name.substring(39);
+                    now_playing = `[${name}](${current_track.url})`
+                }
+                
                 const main = new Discord.MessageEmbed()
                     .setAuthor({ name: "Arkus.wav Playback Status", iconURL: medias.rotate})
                     .setDescription(`\`📣 [${current_id}] ${current_track.formattedDuration}\` ${now_playing}`)
@@ -53,11 +58,11 @@
                 return message.channel.send({ embeds: [main] }); 
             
             } catch(err) {
-                console.log(`  ❱❱ There was an error at ${__filename.split(/[\\/]/).pop()!}\n`, err);
+                console.log(`  ❱❱ There was an error at ${__filename.substring(__dirname.length + 1)}\n`, err);
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['stat'],
 
         usage: "Displays the status of the current track.",

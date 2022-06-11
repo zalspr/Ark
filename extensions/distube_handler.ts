@@ -26,7 +26,7 @@
 
             try {
 
-                let now_playing = (song.name!.length > 50) ? `${song.name!.substring(0, 50-1)}...` : song.name;
+                let now_playing = song.name.substring(59);
                 queue.textChannel?.messages.fetch({ limit: 1 })
                     .then(async (messages: Discord.Collection<string, Message>) => {
 
@@ -53,7 +53,7 @@
 
             try {
 
-                let now_playing = (song.name!.length > 60) ? `${song.name!.substring(0, 60-1)}...` : song.name;
+                let now_playing = song.name.substring(59);
                 queue.textChannel?.messages.fetch({ limit: 1 })
                     .then(async (messages: Discord.Collection<string, Message>) => {
 
@@ -80,7 +80,7 @@
 
             try {
 
-                let playlist_name = (playlist.name.length > 40) ? `${playlist.name.substring(0, 40-1)}...` : playlist.name
+                let playlist_name = playlist.name.substring(39);
                 const main = new Discord.MessageEmbed()
                     .setDescription(`Added playlist [${playlist_name}](${playlist.url}) [+${playlist.songs.length} tracks]`)
                     .setFooter({ text: `Arkus.wav  •  Added by ${playlist.user!.username}   ` })

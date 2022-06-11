@@ -10,7 +10,7 @@
             message.reply({ allowedMentions: { repliedUser: false }, content: tones[random] });
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['tones', 'ti'],
 
         usage: "Returns a random tone indicator.",

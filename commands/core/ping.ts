@@ -12,10 +12,15 @@
             const msg = await message.reply({ allowedMentions: { repliedUser: false }, 
                 embeds: [pn_embed] });
             msg.edit({ allowedMentions: { repliedUser: false }, 
-                embeds: [pn_embed.setDescription(`\`🎮 Pong!~  ⟶  ◽ Latency: ${Math.floor(msg.createdTimestamp - message.createdTimestamp)}ms\``)] });
+                embeds: [
+                   pn_embed.setDescription(
+                      `\`🎮 Pong!~  ⟶  ◽ Latency: ${Math.floor(msg.createdTimestamp - message.createdTimestamp)}ms\``
+                   )
+                ]
+            });
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name:  __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['lat', 'latency'],
 
         usage: "Fetches the ping between Arkus and the server.",

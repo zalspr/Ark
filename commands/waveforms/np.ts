@@ -25,7 +25,7 @@
 
                     let current_track = queue.songs[0];
                     let timestamp = Math.round((queue.currentTime / current_track.duration) * 50);
-                    let text_length = (current_track.name!.length > 60) ? `${current_track.name!.substring(0, 60 - 1)}...` : current_track.name;
+                    let text_length = current_track.name.substring(59);
 
                     let progress_bar = "─────────────────────────────────────────────────";
                     progress_bar = progress_bar.substring(0, timestamp) + "🔹" + progress_bar.substring(timestamp + 1);
@@ -42,11 +42,11 @@
                 }
             
             } catch(err) {
-                console.log(`  ❱❱ There was an error at ${__filename.split(/[\\/]/).pop()!}\n`, err);
+                console.log(`  ❱❱ There was an error at ${__filename.substring(__dirname.length + 1)}\n`, err);
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['nowplaying', 'current'],
 
         usage: "Returns the current track being played.",

@@ -34,7 +34,7 @@
                         queue.songs[1] || queue.autoplay ? queue.skip() : queue.seek(current_track_in.duration);
     
                         const main = new Discord.MessageEmbed()
-                            .setDescription(`✦ Skipped ${(current_track_in.name!.length > 60) ? `${current_track_in.name!.substring(0, 60-1)}...` : current_track_in.name}.`)
+                            .setDescription(`✦ Skipped ${current_track_in.name.substring(0,59)}.`)
                             .setFooter({ text: `Arkus.wav  •  Skipped by ${message.author.username}   ` })
                             .setColor(colors.blurple as ColorResolvable)
                             .setTimestamp();
@@ -81,11 +81,11 @@
                 }
             
             } catch(err) {
-                console.log(`  ❱❱ There was an error at ${__filename.split(/[\\/]/).pop()!}\n`, err);
+                console.log(`  ❱❱ There was an error at ${__filename.substring(__dirname.length + 1)}\n`, err);
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['s', 'n', 'next'],
 
         usage: "Skips the current track. Add a number parameter to skip forward that many tracks.",

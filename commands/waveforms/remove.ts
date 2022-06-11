@@ -27,7 +27,7 @@
 
                     let merged_queue = [...queue.previousSongs, ...queue.songs];
                     let current_track = (merged_queue.indexOf(queue.songs[0]));
-                    let track_index = args[0] - 1 ? args[0] - 1 : -1;
+                    let track_index = args[0] <= 1 ? -1 : args[0] - 1;
 
                     if (isNaN(args[0]) || args[0] > merged_queue.length || args[0] < 0 || track_index === current_track) {
 
@@ -41,7 +41,7 @@
                         
                         let track = merged_queue[track_index];            
                         if (args[0] > current_track) {
-                            queue.songs.splice(args[0]-1-current_track, 1);
+                            queue.songs.splice(args[0] - 1 - current_track, 1);
                         } else if (args[0] < current_track) {
                             queue.previousSongs.splice(track_index, 1);
                         }
@@ -56,11 +56,11 @@
                 }
             
             } catch(err) {
-                console.log(`  ❱❱ There was an error at ${__filename.split(/[\\/]/).pop()!}\n`, err);
+                console.log(`  ❱❱ There was an error at ${__filename.substring(__dirname.length + 1)}\n`, err);
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['rmv'],
 
         usage: "Removes a track off the queue given their index.",

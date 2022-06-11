@@ -30,8 +30,8 @@
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
-        alias: ['pf', 'pfct'],
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
+        alias: ['pf', 'pfct', 'primefactors'],
 
         usage: "Returns a list of prime factors of a given input.",
         categ: (__dirname.split(/[\\/]/).pop()!).toUpperCase(),

@@ -33,7 +33,7 @@
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['avg', 'mean'],
 
         usage: "Gets the average of a set of numbers.",

@@ -20,11 +20,11 @@
             }
         },
 
-        name: __filename.split(/[\\/]/).pop()!.split('.').shift(),
+        name: __filename.substring(__dirname.length + 1).split(".")[0],
         alias: ['m', 'calc', 'solve'],
 
         usage: "Evaluates a math expression.",
         categ: (__dirname.split(/[\\/]/).pop()!).toUpperCase(),
         status: 'ACTIVE',
-        extend: false
+        extend: true
    };

@@ -1,7 +1,7 @@
    
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
-    import { colors } from '../../databases/customs.json';
+    import { Colors } from '../../databases/customs.json';
 
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
@@ -19,7 +19,7 @@
 
                     const warn = new Discord.MessageEmbed()
                         .setDescription("\`🏴\` ⟶ No tracks in queue.")
-                        .setColor(colors.crimson as ColorResolvable);
+                        .setColor(Colors.crimson as ColorResolvable);
                     return message.channel.send({ embeds: [warn] })
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
@@ -36,7 +36,7 @@
                         const main = new Discord.MessageEmbed()
                             .setDescription(`✦ Skipped ${current_track_in.name?.substring(0, 59)}.`)
                             .setFooter({ text: `Arkus.wav  •  Skipped by ${message.author.username}   ` })
-                            .setColor(colors.blurple as ColorResolvable)
+                            .setColor(Colors.blurple as ColorResolvable)
                             .setTimestamp();
                         return message.channel.send({ embeds: [main] });
 
@@ -47,13 +47,12 @@
                             // number should be between current timestamp and the song duration
                             let track_length  = queue.songs[0].duration;
                             let current_time  = Math.round(queue.currentTime);
-
                             
                         }
                         
                         const warn = new Discord.MessageEmbed()
                             .setDescription("\`🏴\` ⟶ You have to enter a number to move forward to.")
-                            .setColor(colors.crimson as ColorResolvable);
+                            .setColor(Colors.crimson as ColorResolvable);
                         return message.channel.send({ embeds: [warn] })
                             .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
@@ -63,17 +62,17 @@
 
                             const warn = new Discord.MessageEmbed()
                                 .setDescription("\`🏴\` ⟶ You cannot jump beyond the end of the queue.")
-                                .setColor(colors.crimson as ColorResolvable);
+                                .setColor(Colors.crimson as ColorResolvable);
                             return message.channel.send({ embeds: [warn] })
                                 .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
                         } else {
                             
-                            queue.jump(+args[0]);
+                            queue.jump(parseInt(args[0]));
                             const main = new Discord.MessageEmbed()
                                 .setDescription(`✦ Skipped forward \`${args[0]}\` tracks to Track \`${(current_track + 1) +  Number(args[0])}\`.`)
                                 .setFooter({ text: `Arkus.wav  •  Skipped by ${message.author.username}   ` })
-                                .setColor(colors.blurple as ColorResolvable)
+                                .setColor(Colors.blurple as ColorResolvable)
                                 .setTimestamp();
                             return message.channel.send({ embeds: [main] });
                         }

@@ -19,7 +19,7 @@
             ],
             updateYouTubeDL: false,
             customFilters: filters
-        })
+        });
 
         client.distube
         .on('playSong', async (queue: Queue, song: Song) => { 
@@ -37,7 +37,7 @@
                         .setColor(colors.blurple as ColorResolvable)
                         .setTimestamp();
 
-                    if (last_user.author.id === client.user!.id && last_user.embeds[0].description?.includes("Now playing")) {
+                    if (last_user.author.id === client.user?.id && last_user.embeds[0].description?.includes("Now playing")) {
                         last_user.edit({ embeds: [main] });
                     } else {
                         queue.textChannel?.send({ embeds: [main] });
@@ -64,7 +64,7 @@
                         .setColor(colors.blurple as ColorResolvable)
                         .setTimestamp();
 
-                    if (last_user.author.id === client.user!.id && last_user.embeds[0].description?.includes("Queued")) {
+                    if (last_user.author.id === client.user?.id && last_user.embeds[0].description?.includes("Queued")) {
                         last_user.edit({ embeds: [main] });
                     } else {
                         queue.textChannel?.send({ embeds: [main] });

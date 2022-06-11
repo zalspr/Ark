@@ -1,15 +1,15 @@
    
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
-    import { colors } from '../../databases/customs.json';
+    import { Colors } from '../../databases/customs.json';
     import { Song } from 'distube';
 
     function FixBracket(track_name: string) {
 
-        if (track_name!.indexOf(']') < track_name!.indexOf('[')) {
+        if (track_name.indexOf(']') < track_name.indexOf('[')) {
             track_name = track_name?.replace(']', ')');
-        } if (track_name!.lastIndexOf('[') > (track_name!.lastIndexOf(']') ? track_name!.lastIndexOf(']') : 0)) {
-            track_name = track_name?.substring(0, track_name?.lastIndexOf('[')) + '(' + track_name?.substring(track_name?.lastIndexOf('[') + 1);
+        } if (track_name.lastIndexOf('[') > (track_name.lastIndexOf(']') ? track_name.lastIndexOf(']') : 0)) {
+            track_name = track_name?.substring(0, track_name.lastIndexOf('[')) + '(' + track_name.substring(track_name.lastIndexOf('[') + 1);
         }
 
         return track_name;
@@ -29,12 +29,12 @@
             for (const data of page) {
 
                 let track_id = ('0' + (++j).toString()).slice(-2);
-                let track_name = data.name?.substring(0, 49);
+                let track_name = data.name ? data.name.substring(0, 49) : "";
 
-                if (track_name!.length > 49)
+                if (track_name.length > 49)
                     track_name += '...';
 
-                track_name = FixBracket(track_name!);
+                track_name = FixBracket(track_name);
                 let temp_tracklist = `\`[${track_id}] ${data.formattedDuration}\`  [${track_name}](${data.url})\n`;
 
                 if (tracklist.length + temp_tracklist.length > 1024) {
@@ -54,14 +54,14 @@
             tracklist = tracklist.substring(0, 1024);
 
             let current_id = ('0' + (tracks.indexOf(current) + 1).toString()).slice(-2);
-            let current_name = current.name?.substring(0, 49);
-
-            current_name = FixBracket(current_name!);
+            let current_name = current.name ? current.name.substring(0, 49) : "";
+ 
+            current_name = FixBracket(current_name);
             let currents = `\`[${current_id}] ${current.formattedDuration}\`  [${current_name}](${current.url})`;
 
             const queue_embed = new Discord.MessageEmbed()
                 .setFooter({ text: `Arkus.wav  •  ${cur_page} / ${max_page}  •  Track ${tracks.indexOf(current) + 1} of ${tracks.length}` })
-                .setColor(colors.blurple as ColorResolvable)
+                .setColor(Colors.blurple as ColorResolvable)
                 .setTimestamp()
                 .addFields(
                     { name: '\`📢\` Now Playing:', value: currents },
@@ -86,7 +86,7 @@
 
                     const warn = new Discord.MessageEmbed()
                         .setDescription("\`🏴\` ⟶ No tracks in queue.")
-                        .setColor(colors.crimson as ColorResolvable);
+                        .setColor(Colors.crimson as ColorResolvable);
                     return message.channel.send({ embeds: [warn] })
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
                 }

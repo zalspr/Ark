@@ -1,7 +1,7 @@
    
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
-    import { colors } from '../../databases/customs.json';
+    import { Colors } from '../../databases/customs.json';
 
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
@@ -17,7 +17,7 @@
 
                     const no_embed = new Discord.MessageEmbed()
                         .setDescription("\`🏴\` ⟶ No tracks in queue.")
-                        .setColor(colors.crimson as ColorResolvable);
+                        .setColor(Colors.crimson as ColorResolvable);
                     return message.channel.send({ embeds: [no_embed] })
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
@@ -35,7 +35,7 @@
 
                     const np_embed = new Discord.MessageEmbed()
                         .setDescription(play_card)
-                        .setColor(colors.blurple as ColorResolvable)
+                        .setColor(Colors.blurple as ColorResolvable)
                         .setFooter({ text: `Arkus.wav  •  Requested by ${message.author.username}   ` })
                         .setTimestamp();
                     return message.channel.send({ embeds: [np_embed] });

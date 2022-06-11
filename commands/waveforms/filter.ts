@@ -1,7 +1,7 @@
    
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
-    import { colors, medias } from '../../databases/customs.json';
+    import { Colors, Medias } from '../../databases/customs.json';
     import { prefix } from '../../databases/preferences.json';
 
     export default {
@@ -19,12 +19,12 @@
                 if (!queue) {
 
                     const main = new Discord.MessageEmbed()
-                        .setAuthor({ name: `Filter Listing`, iconURL: medias.rotate })
+                        .setAuthor({ name: `Filter Listing`, iconURL: Medias.rotate })
                         .setDescription(`Type \`${prefix}filter\` \`name\` toggles the filter. Type it again to turn it off. \nType  \`${prefix}filter\` \`clear\` to remove all filters. Join a voice channel to try it out.`)
                         .addField(`\`📢\`  All Filters`, '`' + Object.keys(client.distube.filters).sort().join('`, `') + '`')
-                        .setThumbnail(message.guild!.iconURL()!)
+                        .setThumbnail(message.guild?.iconURL() as string)
                         .setFooter({ text: `Arkus.wav  •  Requested by ${message.author.username}   `})
-                        .setColor(colors.blurple as ColorResolvable)
+                        .setColor(Colors.blurple as ColorResolvable)
                         .setTimestamp();
                     return message.channel.send({ embeds: [main] });
 
@@ -36,16 +36,16 @@
 
                     const main = new Discord.MessageEmbed()
                         .setFooter({ text: `Arkus.wav  •  Requested by ${message.author.username}   `})
-                        .setColor(colors.blurple as ColorResolvable)
+                        .setColor(Colors.blurple as ColorResolvable)
                         .setTimestamp();
                     
                     if (!args[0] || args[0] === 'list') {
             
-                        main.setAuthor({ name: `Filter Listing`, iconURL: medias.rotate })
+                        main.setAuthor({ name: `Filter Listing`, iconURL: Medias.rotate })
                             .setDescription(`Type \`${prefix}filter\` \`name\` toggles the filter. Type it again to turn it off. \nType  \`${prefix}filter\` \`clear\` to remove all filters.`)
                             .addField(`\`📢\`  Supported Filters`, '`' + rem_array.join('`, `') + '`')
                             .addField(`\`📢\`  Applied Filters`, cur_array.length > 0 ? '`' + cur_array.join('`, `') + '`' : '`No filters applied.`')
-                            .setThumbnail(message.guild!.iconURL()!);
+                            .setThumbnail(message.guild?.iconURL() as string);
 
                     } else if (args.length > 1) {
 
@@ -53,7 +53,7 @@
                         if (args_filters.length === 0) {
 
                             main.setDescription("✦ Invalid filter.");
-                            main.setColor(colors.crimson as ColorResolvable);
+                            main.setColor(Colors.crimson as ColorResolvable);
 
                         } else {
 
@@ -90,7 +90,7 @@
                     } else {
 
                         main.setDescription("✦ Invalid filter.");
-                        main.setColor(colors.crimson as ColorResolvable);
+                        main.setColor(Colors.crimson as ColorResolvable);
                     }
 
                     message.channel.send({ embeds: [main] });

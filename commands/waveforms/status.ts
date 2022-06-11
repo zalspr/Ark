@@ -1,7 +1,7 @@
    
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
-    import { colors, medias } from '../../databases/customs.json';
+    import { Colors, Medias } from '../../databases/customs.json';
 
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
@@ -17,7 +17,7 @@
 
                     const warn = new Discord.MessageEmbed()
                         .setDescription("\`🏴\` ⟶ No tracks in queue.")
-                        .setColor(colors.crimson as ColorResolvable);
+                        .setColor(Colors.crimson as ColorResolvable);
                     return message.channel.send({ embeds: [warn] })
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
                 }
@@ -35,7 +35,7 @@
                 status_b += `\`🔊\` **Volume:** \`${queue.volume}\` \n\n`;
 
                 let status_c = `\`🔄\` **Looping:** \`${repeat_mode}\` \n\n`;
-                status_c += `\`📼\` **Filter:** \`${queue.filters.length > 0 ? queue.filters.join(', ') : `off`}\`\n\n`;
+                status_c += `\`📼\` **Filters:** \`${queue.filters.length > 0 ? queue.filters.join(', ') : `off`}\`\n\n`;
                 
                 let now_playing = 'Nothing';
                 
@@ -45,9 +45,9 @@
                 }
                 
                 const main = new Discord.MessageEmbed()
-                    .setAuthor({ name: "Arkus.wav Playback Status", iconURL: medias.rotate})
+                    .setAuthor({ name: "Arkus.wav Playback Status", iconURL: Medias.rotate})
                     .setDescription(`\`📣 [${current_id}] ${current_track.formattedDuration}\` ${now_playing}`)
-                    .setColor(colors.blurple as ColorResolvable)
+                    .setColor(Colors.blurple as ColorResolvable)
 
                     .addField('\u200b', status_a, true)
                     .addField('\u200b', status_b, true)

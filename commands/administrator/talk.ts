@@ -1,11 +1,12 @@
    
-    import Discord, { Message } from 'discord.js';
+    import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
+    import { Colors } from '../../databases/customs.json';
 
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
 
-            if (!message.member!.permissions.has('ADMINISTRATOR')) return;
+            if (!message.member?.permissions.has('ADMINISTRATOR')) return;
             if (message.deletable) message.delete();
             
             let slicer = args[0] === '/m' ? 2 : 1; 
@@ -15,7 +16,7 @@
             if (slicer === 2) {
                 const tk_embed = new Discord.MessageEmbed()
                     .setDescription(`**${text}**`)
-                    .setColor('#2F3136');
+                    .setColor(Colors.invisible as ColorResolvable);
                 message.channel.send({ embeds: [tk_embed] });
             } else if (args[0]) {
                 message.channel.send(text);

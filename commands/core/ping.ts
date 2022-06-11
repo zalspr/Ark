@@ -14,8 +14,7 @@
             msg.edit({ allowedMentions: { repliedUser: false }, 
                 embeds: [
                    pn_embed.setDescription(
-                      `\`🎮 Pong!~  ⟶  ◽ Latency: ${Math.floor(msg.createdTimestamp - message.createdTimestamp)}ms\``
-                   )
+                      `\`🎮 Pong!~  ⟶  ◽ Latency: ${Math.floor(msg.createdTimestamp - message.createdTimestamp)}ms\``)
                 ]
             });
         },

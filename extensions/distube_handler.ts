@@ -80,7 +80,7 @@
 
             try {
 
-                let playlist_name = playlist.name
+                let playlist_name = playlist.name.substring(39);
                 const main = new Discord.MessageEmbed()
                     .setDescription(`Added playlist [${playlist_name}](${playlist.url}) [+${playlist.songs.length} tracks]`)
                     .setFooter({ text: `Arkus.wav  •  Added by ${playlist.user!.username}   ` })

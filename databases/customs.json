@@ -1,15 +1,16 @@
 {
-    "colors": {
+    "Colors": {
         "blurple": "#7289DA",
         "crimson": "#BF3939",
-        "mahogany": "#E4C390"
+        "mahogany": "#E4C390",
+        "invisible": "#2F3136"
     },
 
-    "medias": {
+    "Medias": {
         "rotate": "https://i.imgur.com/o1jRjHA.gif"
     },
 
-    "filters" : {
+    "Filters" : {
         "0.5x" : "rubberband=tempo=0.5",
         "1.25x" : "rubberband=tempo=1.25",
         "1.5x" : "rubberband=tempo=1.5",

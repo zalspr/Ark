@@ -31,6 +31,9 @@
                 let track_id = ('0' + (++j).toString()).slice(-2);
                 let track_name = data.name?.substring(0, 49);
 
+                if (track_name!.length > 49)
+                    track_name += '...';
+
                 track_name = FixBracket(track_name!);
                 let temp_tracklist = `\`[${track_id}] ${data.formattedDuration}\`  [${track_name}](${data.url})\n`;
 

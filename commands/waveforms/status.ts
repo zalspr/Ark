@@ -40,7 +40,7 @@
                 let now_playing = 'Nothing';
                 
                 if (current_track) {
-                    let name = current_track.name?.substring(39);
+                    let name = current_track.name?.substring(0, 39);
                     now_playing = `[${name}](${current_track.url})`
                 }
                 

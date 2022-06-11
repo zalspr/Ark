@@ -1,8 +1,8 @@
 
-    import Discord from 'discord.js';
+    import { MessageEmbed } from 'discord.js';
 
     export default {
-        extend: (cmd: any, embed: Discord.MessageEmbed, type: string) => {
+        extend: (cmd: any, embed: MessageEmbed, type: string) => {
 
         switch (type) {
             case 'math':

@@ -11,8 +11,8 @@
 
         console.log('\n  ❱❱ Online. \n');
         client.user!.setPresence({ activities: [{
-            name: 'with the clouds',
-            type: 'STREAMING',
+            name: 'the moon',
+            type: 'WATCHING',
             url: "https://www.twitch.tv/monstercat"
         }], status: 'dnd' });
     });

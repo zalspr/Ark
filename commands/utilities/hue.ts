@@ -58,7 +58,7 @@
         },
 
         name: __filename.substring(__dirname.length + 1).split(".")[0],
-        alias: ['x', 'color', 'col', 'hex'],
+        alias: ['x', 'color', 'col', 'hex', 'rgb', 'hsl'],
 
         usage: "Returns the color of a given hex value.",
         categ: (__dirname.split(/[\\/]/).pop()!).toUpperCase(),

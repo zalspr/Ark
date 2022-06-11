@@ -48,10 +48,10 @@
                 }
             }
 
-            if (tracklist.length > 1024) tracklist = tracklist.substring(0, 1024);
+            tracklist = tracklist.substring(0, 1024);
 
             let current_id = ('0' + (tracks.indexOf(current) + 1).toString()).slice(-2);
-            let current_name = current.name?.substring(49);
+            let current_name = current.name?.substring(0, 49);
 
             current_name = FixBracket(current_name!);
             let currents = `\`[${current_id}] ${current.formattedDuration}\`  [${current_name}](${current.url})`;

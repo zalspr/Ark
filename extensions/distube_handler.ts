@@ -1,7 +1,7 @@
 
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import DisTube, { Queue, Song, Playlist, SearchResult } from 'distube';
-    import { colors, filters } from '../databases/customs.json';
+    import { Colors, Filters } from '../databases/customs.json';
     import SuperClient from './super_client';
 
     import { YtDlpPlugin } from '@distube/yt-dlp';
@@ -18,7 +18,7 @@
                 new YtDlpPlugin()
             ],
             updateYouTubeDL: false,
-            customFilters: filters
+            customFilters: Filters
         });
 
         client.distube
@@ -34,7 +34,7 @@
                     const main = new Discord.MessageEmbed()
                         .setDescription(`Now playing: [${now_playing}](${song.url})  •  [<@${song.user?.id}>]`)
                         .setFooter({ text: `Arkus.wav  •  Queued by ${song.user!.username}   ` })
-                        .setColor(colors.blurple as ColorResolvable)
+                        .setColor(Colors.blurple as ColorResolvable)
                         .setTimestamp();
 
                     if (last_user.author.id === client.user?.id && last_user.embeds[0].description?.includes("Now playing")) {
@@ -61,7 +61,7 @@
                     const main = new Discord.MessageEmbed()
                         .setDescription(`Queued [${now_playing}](${song.url})`)
                         .setFooter({ text: `Arkus.wav  •  Queued by ${song.user!.username}   ` })
-                        .setColor(colors.blurple as ColorResolvable)
+                        .setColor(Colors.blurple as ColorResolvable)
                         .setTimestamp();
 
                     if (last_user.author.id === client.user?.id && last_user.embeds[0].description?.includes("Queued")) {
@@ -84,7 +84,7 @@
                 const main = new Discord.MessageEmbed()
                     .setDescription(`Added playlist [${playlist_name}](${playlist.url}) [+${playlist.songs.length} tracks]`)
                     .setFooter({ text: `Arkus.wav  •  Added by ${playlist.user!.username}   ` })
-                    .setColor(colors.mahogany as ColorResolvable)
+                    .setColor(Colors.mahogany as ColorResolvable)
                     .setTimestamp();
                 queue.textChannel?.send({ embeds: [main] });
 
@@ -99,7 +99,7 @@
 
                 const main = new Discord.MessageEmbed()
                     .setDescription(`✦ Can't find any related music.`)
-                    .setColor(colors.crimson as ColorResolvable);
+                    .setColor(Colors.crimson as ColorResolvable);
                 queue.textChannel?.send({ embeds: [main] });
 
             } catch(err) {
@@ -113,7 +113,7 @@
 
                 const finish_embed = new Discord.MessageEmbed()
                     .setDescription(`✦ No more tracks left in queue.`)
-                    .setColor(colors.crimson as ColorResolvable);
+                    .setColor(Colors.crimson as ColorResolvable);
                 queue.textChannel?.send({ embeds: [finish_embed] });
 
             } catch(err) {
@@ -132,7 +132,7 @@
 
             const error_embed = new Discord.MessageEmbed()
                 .setDescription(`✦ An error occurred.`)
-                .setColor(colors.crimson as ColorResolvable);
+                .setColor(Colors.crimson as ColorResolvable);
             channel.send({ embeds: [error_embed] });
 
             console.log("  ❱❱ Error detected on distube_handler.ts.\n", err);

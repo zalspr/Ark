@@ -10,7 +10,7 @@
     client.once('ready', () => {
 
         console.log('\n  ❱❱ Online. \n');
-        client.user!.setPresence({ activities: [{
+        client.user?.setPresence({ activities: [{
             name: 'the moon',
             type: 'WATCHING',
             url: "https://www.twitch.tv/monstercat"
@@ -29,7 +29,7 @@
 
     client.on('messageCreate', async (message) => {
 
-        if ((message.content.split(' '))[0] === `<@${client.user!.id}>`) 
+        if ((message.content.split(' '))[0] === `<@${client.user?.id}>`) 
             message.channel.send(`> Hello, my prefix is \`"${prefix}"\`.`);
         if (message.author.bot || !message.guild || !message.content.startsWith(prefix)) 
             return;

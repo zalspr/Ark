@@ -2,7 +2,7 @@
     import { Client } from 'discord.js';
     import fs, { Dirent } from 'fs';
 
-    const get_files = (dir: string, suffix: string, client: any) => {
+    const GetFiles = (dir: string, suffix: string, client: any) => {
 
         const master : Dirent[] = fs.readdirSync(dir, { withFileTypes: true });
         for (const file of master) {
@@ -10,8 +10,8 @@
             if (file.isDirectory()) {
                 let name = file.name.charAt(0).toUpperCase() + file.name.slice(1);
 
-                // maintenance
-                let ignore = fs.readFileSync(`./databases/folderignore.txt`).toString().split(', ');
+                // Maintenance
+                let ignore = fs.readFileSync(`./databases/maintenance.txt`).toString().split(', ');
                 if (ignore.includes(name)) 
                     continue;
 
@@ -20,7 +20,7 @@
                 } else {
                     console.log(`  ❱❱ Loading files from the ${name} folder...`);
                     client.categories.push(name);
-                    get_files(`${dir}/${file.name}`, suffix, client);
+                    GetFiles(`${dir}/${file.name}`, suffix, client);
                 }
 
             } else if (file.name.endsWith(suffix)) {
@@ -46,5 +46,5 @@
     };
 
     export default (client: Client) => {
-        get_files('commands', '.ts', client);
+        GetFiles('commands', '.ts', client);
     };

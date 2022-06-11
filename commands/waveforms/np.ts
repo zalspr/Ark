@@ -25,7 +25,7 @@
 
                     let current_track = queue.songs[0];
                     let timestamp = Math.round((queue.currentTime / current_track.duration) * 50);
-                    let text_length = current_track.name.substring(59);
+                    let text_length = current_track.name?.substring(59);
 
                     let progress_bar = "─────────────────────────────────────────────────";
                     progress_bar = progress_bar.substring(0, timestamp) + "🔹" + progress_bar.substring(timestamp + 1);

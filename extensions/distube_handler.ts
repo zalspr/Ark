@@ -26,7 +26,7 @@
 
             try {
 
-                let now_playing = song.name.substring(59);
+                let now_playing = song.name?.substring(59);
                 queue.textChannel?.messages.fetch({ limit: 1 })
                     .then(async (messages: Discord.Collection<string, Message>) => {
 
@@ -53,7 +53,7 @@
 
             try {
 
-                let now_playing = song.name.substring(59);
+                let now_playing = song.name?.substring(59);
                 queue.textChannel?.messages.fetch({ limit: 1 })
                     .then(async (messages: Discord.Collection<string, Message>) => {
 

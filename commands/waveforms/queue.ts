@@ -29,7 +29,7 @@
             for (const data of page) {
 
                 let track_id = ('0' + (++j).toString()).slice(-2);
-                let track_name = data.name.substring(49);
+                let track_name = data.name?.substring(49);
 
                 track_name = FixBracket(track_name!);
                 let temp_tracklist = `\`[${track_id}] ${data.formattedDuration}\`  [${track_name}](${data.url})\n`;
@@ -51,7 +51,7 @@
             if (tracklist.length > 1024) tracklist = tracklist.substring(0, 1024);
 
             let current_id = ('0' + (tracks.indexOf(current) + 1).toString()).slice(-2);
-            let current_name = current.name.substring(49);
+            let current_name = current.name?.substring(49);
 
             current_name = FixBracket(current_name!);
             let currents = `\`[${current_id}] ${current.formattedDuration}\`  [${current_name}](${current.url})`;

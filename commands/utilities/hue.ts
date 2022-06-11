@@ -2,6 +2,7 @@
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
 
+    function rgbToHex(...args : number[]) : number;
     function rgbToHex(r : number, g : number, b : number) : number {
         return (r & 0xff) << 16 | (g & 0xff) << 8 | (b & 0xff);
     }

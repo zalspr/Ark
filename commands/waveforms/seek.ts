@@ -1,7 +1,7 @@
    
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
-    import { colors } from '../../databases/customs.json';
+    import { Colors } from '../../databases/customs.json';
 
     function Splitter(str: string) : number[] {
 
@@ -82,7 +82,7 @@
 
                     const warn = new Discord.MessageEmbed()
                         .setDescription("\`🏴\` ⟶ No tracks in queue.")
-                        .setColor(colors.crimson as ColorResolvable);
+                        .setColor(Colors.crimson as ColorResolvable);
                     return message.channel.send({ embeds: [warn] })
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
@@ -128,7 +128,7 @@
 
                                 const warn = new Discord.MessageEmbed()
                                     .setDescription("\`🏴\` ⟶ Invalid time format.")
-                                    .setColor(colors.crimson as ColorResolvable);
+                                    .setColor(Colors.crimson as ColorResolvable);
                                 return message.channel.send({ embeds: [warn] })
                                     .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
@@ -136,7 +136,7 @@
                                     
                                 const warn = new Discord.MessageEmbed()
                                     .setDescription("\`🏴\` ⟶ Time argument exceeds the track length.")
-                                    .setColor(colors.crimson as ColorResolvable);
+                                    .setColor(Colors.crimson as ColorResolvable);
                                 return message.channel.send({ embeds: [warn] })
                                     .then(message => { setTimeout(() => { message.delete() }, 5000) });
                             }
@@ -148,7 +148,7 @@
                         queue.seek(timestamp);
                         const main = new Discord.MessageEmbed()
                             .setDescription(`✦ Seeking to \`${ToLiteral(timestamp)}\`.`)
-                            .setColor(colors.blurple as ColorResolvable)
+                            .setColor(Colors.blurple as ColorResolvable)
                             .setFooter({ text: `Arkus.wav  •  Requested by ${message.author.username}   ` })
                             .setTimestamp();
                         return message.channel.send({ embeds: [main] });
@@ -157,7 +157,7 @@
                             
                         const warn = new Discord.MessageEmbed()
                             .setDescription("\`🏴\` ⟶ Invalid arguments.")
-                            .setColor(colors.crimson as ColorResolvable);
+                            .setColor(Colors.crimson as ColorResolvable);
                         return message.channel.send({ embeds: [warn] })
                             .then(message => { setTimeout(() => { message.delete() }, 5000) });
                     }

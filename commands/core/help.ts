@@ -3,9 +3,9 @@
     import SuperClient from '../../extensions/super_client';
     import Extender from '../../extensions/extenders';
 
-    import { prefix } from '../../databases/preferences.json';
+    import { Prefix } from '../../databases/preferences.json';
     import { Medias } from '../../databases/customs.json';
-    const EmojiMap = require('../../databases/emoji_map.json');
+    import EmojiMap from '../../databases/emoji_map.json';
 
     function GetCommands (client: SuperClient, filter: string): string {
 
@@ -13,7 +13,7 @@
         for (const [key, value] of client.commands) {
             if (value.default.status === 'DEPRECATED') continue;
             if (value.default.categ.toLowerCase() === filter.toLowerCase())
-                command += `\`${prefix + key}\` `;
+                command += `\`${Prefix + key}\` `;
         }
 
         return command ? command : 'No commands found.';
@@ -37,7 +37,7 @@
 
                 if (cmd.default) cmd = cmd.default;
                 const alpha_w = cmd.status === 'ALPHA' ? '[Alpha Only]' : '';
-                hpex_embed.setTitle(prefix + cmd.name + ' ' + alpha_w);
+                hpex_embed.setTitle(Prefix + cmd.name + ' ' + alpha_w);
                 
                 if (cmd.extend) {
                     Extender.extend(cmd, hpex_embed, args[0]);
@@ -48,16 +48,16 @@
             } else if (!args[0]) {
 
                 hpex_embed.setAuthor({ name: 'Arkus Commands', iconURL: Medias.rotate })
-                    .setDescription(`Arkus' default prefix is \`${prefix}\`. Note that all commands are experimental and only few work as it should as of the moment.`)
+                    .setDescription(`Arkus' default prefix is \`${Prefix}\`. Note that all commands are experimental and only few work as it should as of the moment.`)
                     .setThumbnail(message.guild?.iconURL() as string);
 
                 for (const category of client.categories) {
                     hpex_embed.addField(
-                        `\`${EmojiMap[category.toLowerCase()] ? EmojiMap[category.toLowerCase()] : '🏴'}\` ${category}`, 
+                        `\`${(EmojiMap as any)[category.toLowerCase()] ? (EmojiMap as any)[category.toLowerCase() as any] : '🏴'}\` ${category}`, 
                         GetCommands(client, category));
                 }
 
-                hpex_embed.addField('\u200b', `Type \`${prefix}help\` \`command\` to view the details of the command.`);
+                hpex_embed.addField('\u200b', `Type \`${Prefix}help\` \`command\` to view the details of the command.`);
             }
             
             message.reply({ allowedMentions: { repliedUser: false }, embeds: [hpex_embed] });

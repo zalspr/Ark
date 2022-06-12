@@ -1,6 +1,6 @@
 
     import Discord, { ColorResolvable, Message } from 'discord.js';
-    import DisTube, { Queue, Song, Playlist, SearchResult } from 'distube';
+    import DisTube, { Queue, Song, Playlist } from 'distube';
     import { Colors, Filters } from '../databases/customs.json';
     import SuperClient from './super_client';
 

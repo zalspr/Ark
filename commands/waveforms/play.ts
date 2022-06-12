@@ -1,7 +1,7 @@
    
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
-    import { colors } from '../../databases/customs.json';
+    import { Colors } from '../../databases/customs.json';
 
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
@@ -21,7 +21,7 @@
 
                     const warn = new Discord.MessageEmbed()
                         .setDescription("\`🏴\` ⟶ I am currently being used on another channel.")
-                        .setColor(colors.crimson as ColorResolvable);
+                        .setColor(Colors.crimson as ColorResolvable);
                     return message.channel.send({ embeds: [warn] })
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
 
@@ -36,7 +36,7 @@
 
                     const warn = new Discord.MessageEmbed()
                         .setDescription("\`🏴\` ⟶ You must provide a track to play.")
-                        .setColor(colors.crimson as ColorResolvable);
+                        .setColor(Colors.crimson as ColorResolvable);
                     return message.channel.send({ embeds: [warn] })
                         .then(message => { setTimeout(() => { message.delete() }, 5000) });
                 }

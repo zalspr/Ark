@@ -2,7 +2,7 @@
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
     import { Colors, Medias } from '../../databases/customs.json';
-    import { prefix } from '../../databases/preferences.json';
+    import { Prefix } from '../../databases/preferences.json';
 
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
@@ -20,7 +20,7 @@
 
                     const main = new Discord.MessageEmbed()
                         .setAuthor({ name: `Filter Listing`, iconURL: Medias.rotate })
-                        .setDescription(`Type \`${prefix}filter\` \`name\` toggles the filter. Type it again to turn it off. \nType  \`${prefix}filter\` \`clear\` to remove all filters. Join a voice channel to try it out.`)
+                        .setDescription(`Typing \`${Prefix}filter\` \`name\` toggles the filter. Type it again to turn it off. \nType  \`${Prefix}filter\` \`clear\` to remove all filters. Join a voice channel to try it out.`)
                         .addField(`\`📢\`  All Filters`, '`' + Object.keys(client.distube.filters).sort().join('`, `') + '`')
                         .setThumbnail(message.guild?.iconURL() as string)
                         .setFooter({ text: `Arkus.wav  •  Requested by ${message.author.username}   `})
@@ -42,7 +42,7 @@
                     if (!args[0] || args[0] === 'list') {
             
                         main.setAuthor({ name: `Filter Listing`, iconURL: Medias.rotate })
-                            .setDescription(`Type \`${prefix}filter\` \`name\` toggles the filter. Type it again to turn it off. \nType  \`${prefix}filter\` \`clear\` to remove all filters.`)
+                            .setDescription(`Typing \`${Prefix}filter\` \`name\` toggles the filter. Type it again to turn it off. \nType  \`${Prefix}filter\` \`clear\` to remove all filters.`)
                             .addField(`\`📢\`  Supported Filters`, '`' + rem_array.join('`, `') + '`')
                             .addField(`\`📢\`  Applied Filters`, cur_array.length > 0 ? '`' + cur_array.join('`, `') + '`' : '`No filters applied.`')
                             .setThumbnail(message.guild?.iconURL() as string);

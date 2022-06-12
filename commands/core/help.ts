@@ -9,7 +9,7 @@
 
     function GetCommands (client: SuperClient, filter: string): string {
 
-        let command: string = '';
+        let command = '';
         for (const [key, value] of client.commands) {
             if (value.default.status === 'DEPRECATED') continue;
             if (value.default.categ.toLowerCase() === filter.toLowerCase())

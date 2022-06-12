@@ -17,7 +17,7 @@
             if (!args[0]) return message.channel.send('Please provide a color value.');
 
             let rgb: number[] = [];
-            let hex: number = 0;
+            let hex = 0;
             let input = args[0].replace('#', '');
             let exp = /^([0-9a-f]{3}){1,2}$/i;
 

@@ -1,7 +1,7 @@
 
     import Discord from 'discord.js';
     import SuperClient from './extensions/super_client';
-    import { prefix } from './databases/preferences.json';
+    import { Prefix } from './databases/preferences.json';
 
     require('dotenv').config();
     console.log('\n');
@@ -30,11 +30,11 @@
     client.on('messageCreate', async (message) => {
 
         if ((message.content.split(' '))[0] === `<@${client.user?.id}>`) 
-            message.channel.send(`> Hello, my prefix is \`"${prefix}"\`.`);
-        if (message.author.bot || !message.guild || !message.content.startsWith(prefix)) 
+            message.channel.send(`> Hello, my prefix is \`"${Prefix}"\`.`);
+        if (message.author.bot || !message.guild || !message.content.startsWith(Prefix)) 
             return;
         
-        const args = message.content.substring(prefix.length).split(" ");
+        const args = message.content.substring(Prefix.length).split(" ");
         const cmd = client.commands.get(args[0].toLowerCase()) 
             || client.commands.get(client.aliases.get(args[0].toLowerCase()));
         if (cmd) cmd.default.run(client, message, args.slice(1));

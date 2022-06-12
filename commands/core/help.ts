@@ -53,7 +53,7 @@
 
                 for (const category of client.categories) {
                     hpex_embed.addField(
-                        `\`${(EmojiMap as any)[category.toLowerCase()] ? (EmojiMap as any)[category.toLowerCase() as any] : '🏴'}\` ${category}`, 
+                        `\`${(EmojiMap as any)[category.toLowerCase()] || '🏴'}\` ${category}`, 
                         GetCommands(client, category));
                 }
 

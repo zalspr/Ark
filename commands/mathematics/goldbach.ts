@@ -28,7 +28,7 @@
 
             } else {
 
-                let number: number = Number(args[0]), output: string = '';
+                let number = Number(args[0]), output = '';
                 if (number === 4) {
                     output = "✦ 2 & 2";
                 } else {

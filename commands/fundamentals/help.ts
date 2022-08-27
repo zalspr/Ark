@@ -3,9 +3,11 @@
     import SuperClient from '../../extensions/super_client';
     import Extender from '../../extensions/extenders';
 
-    import { Prefix } from '../../databases/preferences.json';
     import { Medias } from '../../databases/customs.json';
     import EmojiMap from '../../databases/emoji_map.json';
+
+    require('dotenv').config();
+    const Prefix = process.env.PREFIX || '-';
 
     function GetCommands (client: SuperClient, filter: string): string {
 

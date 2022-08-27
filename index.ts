@@ -1,9 +1,9 @@
 
     import Discord from 'discord.js';
     import SuperClient from './extensions/super_client';
-    import { Prefix } from './databases/preferences.json';
 
     require('dotenv').config();
+    const Prefix = process.env.PREFIX || '-';
     console.log('\n');
 
     const client = new SuperClient();

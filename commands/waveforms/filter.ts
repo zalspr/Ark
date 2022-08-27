@@ -2,7 +2,9 @@
     import Discord, { ColorResolvable, Message } from 'discord.js';
     import SuperClient from '../../extensions/super_client';
     import { Colors, Medias } from '../../databases/customs.json';
-    import { Prefix } from '../../databases/preferences.json';
+
+    require('dotenv').config();
+    const Prefix = process.env.PREFIX || '-';
 
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {

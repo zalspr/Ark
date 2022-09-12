@@ -13,7 +13,13 @@
         client.distube = new DisTube(client, { 
             searchSongs: 10, emitNewSongOnly: false, youtubeDL: false,
             plugins: [
-                new SpotifyPlugin({ emitEventsAfterFetching: true }),
+                new SpotifyPlugin({ 
+                    emitEventsAfterFetching: true,
+                    api: {
+                      clientId: process.env.SPOTIFYCLIENTID || "",
+                      clientSecret: process.env.SPOTIFYCLIENTSC || "",
+                    },
+                }),
                 new SoundCloudPlugin(),
                 new YtDlpPlugin()
             ],

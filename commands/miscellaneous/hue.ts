@@ -18,8 +18,9 @@
 
             let rgb: number[] = [];
             let hex = 0;
-            let input = args[0].replace('#', '');
-            let exp = /^([0-9a-f]{3}){1,2}$/i;
+            let input = args[0].replace('#', '').substr(0, 6);
+            //regexp to accept only inputs with 3 or 6 digits: /^([0-9a-f]{3}){1,2}$/i
+            let exp = /^[\da-f]+/i
 
             if (exp.test(input) && !args[1]) {
 

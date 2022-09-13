@@ -43,7 +43,7 @@
             
             const canvas = require('canvas').createCanvas(500, 500)
             let ctx = canvas.getContext("2d");
-                ctx.fillStyle = hex.toString(16);
+                ctx.fillStyle = '#' + hex.toString(16);
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'hue.png');

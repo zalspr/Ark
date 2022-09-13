@@ -41,15 +41,17 @@
                     .then(message => { setTimeout(() => { message.delete() }, 5000) });
             }
             
+            hex_str = '#' + ('000000' + hex.toString(16)).slice(-6)
+           
             const canvas = require('canvas').createCanvas(500, 500)
             let ctx = canvas.getContext("2d");
-                ctx.fillStyle = '#' + hex.toString(16);
+                ctx.fillStyle = hex_str
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'hue.png');
             const color_embed = new Discord.MessageEmbed()
                 .setAuthor({ name: `Arkus.png Color Translation` })
-                .setDescription(`\`\`\`css\nhex: [#${('000000' + hex.toString(16)).slice(-6)}]\nrgb: [${rgb}]\`\`\``)
+                .setDescription(`\`\`\`css\nhex: [#${hex_str}]\nrgb: [${rgb}]\`\`\``)
                 .setFooter({ text: `Requested by ${message.author.username}`, iconURL: message.author.avatarURL()! })
                 .setThumbnail('attachment://hue.png')
                 .setTimestamp()

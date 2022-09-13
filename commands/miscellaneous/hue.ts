@@ -41,7 +41,7 @@
                     .then(message => { setTimeout(() => { message.delete() }, 5000) });
             }
             
-            hex_str = '#' + ('000000' + hex.toString(16)).slice(-6)
+            let hex_str = '#' + ('000000' + hex.toString(16)).slice(-6)
            
             const canvas = require('canvas').createCanvas(500, 500)
             let ctx = canvas.getContext("2d");

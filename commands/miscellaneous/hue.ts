@@ -10,7 +10,7 @@
     function hexToRgb(hex : number) : any {
         return [(hex >> 16) & 0xff, (hex >> 8) & 0xff, hex & 0xff];
     }
-    
+
     export default {
         run: async (client : SuperClient, message: Message, args: any[]) => {
 
@@ -49,7 +49,7 @@
             const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'hue.png');
             const color_embed = new Discord.MessageEmbed()
                 .setAuthor({ name: `Arkus.png Color Translation` })
-                .setDescription(`\`\`\`css\nhex: [#${hex.toString(16)}]\nrgb: [${rgb}]\`\`\``)
+                .setDescription(`\`\`\`css\nhex: [#${('000000' + hex.toString(16)).slice(-6)}]\nrgb: [${rgb}]\`\`\``)
                 .setFooter({ text: `Requested by ${message.author.username}`, iconURL: message.author.avatarURL()! })
                 .setThumbnail('attachment://hue.png')
                 .setTimestamp()

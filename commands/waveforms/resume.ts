@@ -43,7 +43,7 @@
         },
 
         name: __filename.substring(__dirname.length + 1).split(".")[0],
-        alias: ['continue', 'cont'],
+        alias: ['continue', 'cont', 'unpause'],
 
         usage: "Resumes the queue.",
         categ: (__dirname.split(/[\\/]/).pop()!).toUpperCase(),
